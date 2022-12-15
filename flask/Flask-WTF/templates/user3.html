@@ -6,11 +6,12 @@
 </head>
 <body>
 {% from "_userform.html" import render_field %}
-<form method="POST" action="{{ url_for('user') }}" >
+<form method="POST" action="{{ url_for('user3') }}" >
     {{ form.hidden_tag() }}
     {{ render_field(form.username) }}
     {{ render_field(form.email) }}
     {{ render_field(form.submit) }}
 </form>
+<!-- 利用macro來渲染欄位 -->
 </body>
 </html>

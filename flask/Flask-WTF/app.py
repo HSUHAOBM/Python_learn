@@ -8,16 +8,28 @@ Bootstrap(app)
 
 @app.route('/user', methods=['GET', 'POST'])
 def user():
+    print('this is user')
     form = UserForm()
     #  flask_wtf類中提供判斷是否表單提交過來的method，不需要自行利用request.method來做判斷
     if form.validate_on_submit():
         print(form.__dict__)
         return 'Success Submit'
-    #  如果不是提交過來的表單，就是GET，這時候就回傳user.html網頁
+    #  不是表單，就是GET，回傳 user.htm網頁
     return render_template('user.html', form=form)
+
+@app.route('/user1', methods=['GET', 'POST'])
+def user1():
+    # 無錯誤訊息顯示
+    print('this is user1')
+    form = UserForm()
+    if form.validate_on_submit():
+        return 'Success Submit'
+    return render_template('user1.html', form=form)
 
 @app.route('/user2', methods=['GET', 'POST'])
 def user2():
+    # 使用 Bootstrap 快速建立
+    print('this is user2')
     form = UserForm()
     if form.validate_on_submit():
         return 'Success Submit'
@@ -25,6 +37,8 @@ def user2():
 
 @app.route('/user3', methods=['GET', 'POST'])
 def user3():
+    # 使用模板搭配macro
+    print('this is user3')
     form = UserForm()
     if form.validate_on_submit():
         return 'Success Submit'
