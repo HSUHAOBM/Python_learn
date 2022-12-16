@@ -1,0 +1,12 @@
+<html>
+<head>
+{{ pagedown.include_pagedown() }}
+</head>
+<body>
+    <form method="POST">
+        {{ form.pagedown(only_preview=True) }}
+        {{ form.pagedown(only_input=True, rows=10) }}
+        {{ form.submit }}
+    </form>
+</body>
+</html>
