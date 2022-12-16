@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ moment.include_moment() }}
+    <!-- {{ moment.locale("zh_TW") }} -->
+    {{ moment.locale(auto_detect=True) }}
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>目前時間為..{{ moment(now).format('MMMM Do YYYY, h:mm:ss a') }}.</p>
+    <p>多少時間內..{{ moment(now).fromTime(past_time) }}</p>
+    <p>已經經過了..{{ moment(past_time).fromTime(now) }}</p>
+
+    <div>
+        <p>{{ moment(past_time).format('L') }}</p>
+        <p>{{ moment().format('l') }}</p>
+        <p>{{ moment(past_time).format('LL') }}</p>
+        <p>{{ moment().format('ll') }}</p>
+        <p>{{ moment(past_time).format('LLL') }}</p>
+        <p>{{ moment().format('lll') }}</p>
+        <p>{{ moment(past_time).format('LLLL') }}</p>
+        <p>{{ moment().format('llll') }}</p>
+    </div>
+</body>
+</html>
