@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST" action="{{ url_for('upload_wtf') }}" enctype="multipart/form-data">
+    <div>
+        {{ form.hidden_tag() }}
+        {{ form.btn_uploads}}
+        {# error message #}
+        {% for error in form.btn_uploads.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+        {{ form.submit }}
+    </div>
+    <div>
+        <!-- {% if file_url %}
+        <img src="{{ file_url }}" alt="">
+        <img src="{{url_for('static', filename=filename) }}" />
+
+        {% endif %}
+        {{ file_url }} -->
+
+        {% if file_name %}
+            {{ file_name }}
+            <img src="{{url_for('static', filename='img/' + file_name)}}" />
+
+            {{ file_url }}
+            <img src="{{ file_url }}" alt="">
+
+        {% endif %}
+
+
+    </div>
+</form>
+</body>
+</html>
