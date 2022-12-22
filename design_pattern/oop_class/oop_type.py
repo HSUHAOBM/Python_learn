@@ -1,5 +1,7 @@
 # class tpye
-# StaticMethods、ClassMethods、AbstractMethods
+# StaticMethods、ClassMethods、AbstractMethods、property
+
+# ===========================================================
 
 # StaticMethods 靜態方法
 # 可直接呼叫 ; add @staticmethod , not self
@@ -38,6 +40,7 @@ People_ClassMethods.work(5)
 # Sleeping hours : 3
 # Working hours : 4
 
+# ===========================================================
 
 # AbstractMethods 抽象方法
 # 不能實例化 ,只能被繼承 ; add @abstractmethod ,被繼承都要有abstractmethod funtion
@@ -67,3 +70,15 @@ Max().sleep()
 #   File "/Users/max/Desktop/python_learning/methods.py", line 77, in <module>
 #     Max().sleep()
 # TypeError: Can't instantiate abstractclass Max with abstract methods work
+
+
+# ===========================================================
+
+# 封裝(Encapsulation) 不可改
+class Product():
+    @property
+    def price(self):
+        return 100
+Product().price
+Product().price = 150
+# error AttributeError: can't set attribute
