@@ -1,0 +1,319 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "My API"
+    },
+    "paths": {
+        "/users": {
+            "put": {
+                "summary": "Update user information by user_id",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "User information updated",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true,
+                        "description": "ID of user to update"
+                    },
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "type": "string",
+                        "required": false,
+                        "description": "Username of the user to update"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "type": "string",
+                        "required": false,
+                        "description": "Email address of the user to update"
+                    }
+                ],
+                "tags": [
+                    "User"
+                ]
+            },
+            "post": {
+                "summary": "Add a new user",
+                "description": "",
+                "responses": {
+                    "201": {
+                        "description": "User created",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Missing required parameter(s)"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true,
+                        "description": "Username of the user to create"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true,
+                        "description": "Email address of the user to create"
+                    }
+                ],
+                "tags": [
+                    "User"
+                ]
+            },
+            "delete": {
+                "summary": "Delete user by user_id",
+                "description": "",
+                "responses": {
+                    "204": {
+                        "description": "User deleted"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true,
+                        "description": "ID of user to delete"
+                    }
+                ],
+                "tags": [
+                    "User"
+                ]
+            },
+            "get": {
+                "summary": "Get user(s) by id or get all users.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Returns a user or a list of users.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "description": "The user ID."
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "The user name."
+                                },
+                                "age": {
+                                    "type": "integer",
+                                    "description": "The user age."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The requested user was not found."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": false,
+                        "description": "The ID of the user to retrieve."
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ]
+            }
+        },
+        "/users/{user_id}": {
+            "put": {
+                "summary": "Update user information by user_id",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "User information updated",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true,
+                        "description": "ID of user to update"
+                    },
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "type": "string",
+                        "required": false,
+                        "description": "Username of the user to update"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "type": "string",
+                        "required": false,
+                        "description": "Email address of the user to update"
+                    }
+                ],
+                "tags": [
+                    "User"
+                ]
+            },
+            "post": {
+                "summary": "Add a new user",
+                "description": "",
+                "responses": {
+                    "201": {
+                        "description": "User created",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Missing required parameter(s)"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true,
+                        "description": "Username of the user to create"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true,
+                        "description": "Email address of the user to create"
+                    }
+                ],
+                "tags": [
+                    "User"
+                ]
+            },
+            "delete": {
+                "summary": "Delete user by user_id",
+                "description": "",
+                "responses": {
+                    "204": {
+                        "description": "User deleted"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true,
+                        "description": "ID of user to delete"
+                    }
+                ],
+                "tags": [
+                    "User"
+                ]
+            },
+            "get": {
+                "summary": "Get user(s) by id or get all users.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Returns a user or a list of users.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "description": "The user ID."
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "The user name."
+                                },
+                                "age": {
+                                    "type": "integer",
+                                    "description": "The user age."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The requested user was not found."
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": false,
+                        "description": "The ID of the user to retrieve."
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "The user ID",
+                    "default": 1
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username",
+                    "default": "john.doe"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email address",
+                    "default": "john.doe@example.com"
+                }
+            }
+        }
+    },
+    "basePath": "/",
+    "host": "localhost:5000",
+    "schemes": [
+        "http"
+    ]
+}
