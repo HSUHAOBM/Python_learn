@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>My Website</title>
+  </head>
+  <body>
+    <h1>Welcome to my website~</h1>
+    <div id="visits"></div>
+
+    <script>
+      function updateVisits() {
+        fetch('/visits')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('visits').textContent =
+              'Total visits: ' + data.total_visits +
+              ', Daily visits: ' + data.daily_visits;
+          });
+      }
+
+      // Call updateVisits() once when the page loads
+      updateVisits();
+
+      // Update the visits every 10 seconds
+      setInterval(updateVisits, 10000);
+    </script>
+  </body>
+</html>
