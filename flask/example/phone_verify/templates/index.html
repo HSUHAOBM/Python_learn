@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Phone Number Verification</title>
+  </head>
+  <body>
+    <h1>Phone Number Verification</h1>
+    <form>
+      <label for="phone_number">Phone Number:</label>
+      <input type="text" id="phone_number" name="phone_number"><br><br>
+      <button type="button" onclick="sendVerificationCode()">Send Verification Code</button>
+    </form><br><br>
+    <form>
+      <label for="verification_code">Verification Code:</label>
+      <input type="text" id="verification_code" name="verification_code"><br><br>
+      <button type="button" onclick="checkVerificationCode()">Check Verification Code</button>
+    </form>
+    <br><br>
+    <a id="msg"></a>
+
+    <script>
+      const message = document.getElementById("msg");
+
+      function sendVerificationCode() {
+        const phoneNumber = document.getElementById("phone_number").value;
+        // 移除前面的 "09" 字串，並在前面加上 "+886"
+        const formattedPhoneNumber = "+886" + phoneNumber.slice(1);
+        fetch("/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ phone_number: formattedPhoneNumber })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.result) {
+            console.log("Verification code sent!");
+            message.textContent = "Verification code sent!";
+          } else {
+            console.log("Failed to send verification code.");
+          }
+        })
+      }
+      function checkVerificationCode() {
+        const verificationCode = document.getElementById("verification_code").value;
+        fetch("/check_verification", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ verification_code: verificationCode })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.result) {
+            message.textContent = "Verification ok";
+            console.log("Verification ok");
+          } else {
+            message.textContent = "Verification Failed";
+            console.log("Verification Failed");
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
