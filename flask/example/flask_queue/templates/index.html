@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排隊系統</title>
+</head>
+<body>
+    <h1>排隊系統</h1>
+    <form action="/ticket" method="POST">
+        <label for="user">請輸入用戶名稱：</label>
+        <input type="text" name="user" id="user" required>
+        <button type="submit">排隊</button>
+    </form>
+    <hr>
+    <p>排隊說明：</p>
+    <ul>
+        <li>當你點擊“排隊”按鈕時，系統將你的排隊請求加入到排隊隊列中。</li>
+        <li>你可以在下方查看自己的排隊狀態。</li>
+        <li>當你的排隊請求處理完成時，系統將會顯示你的等待時間。</li>
+    </ul>
+</body>
+</html>

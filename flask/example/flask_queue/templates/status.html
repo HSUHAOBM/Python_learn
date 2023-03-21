@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排隊狀態</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 定義一個更新排隊狀態的函數
+            function updateStatus() {
+                // 獲取用戶名稱
+                var user = $("#user").text();
+                // 發送AJAX請求獲取排隊狀態
+                $.get("/status/" + user, function(data) {
+                    // 更新排隊狀態
+                    if (data.position != null) {
+                        $("#position").text(data.position);
+                    }
+                    if (data.wait_time != null) {
+                        $("#wait_time").text(data.wait_time);
+                    }
+                    if (data.wait_time_after != null) {
+                        $("#wait_time_after").text(data.wait_time_after);
+                    }
+                    // 開始下一輪更新
+                    setTimeout(updateStatus, 1000);
+                });
+            }
+            // 開始更新排隊狀態
+            updateStatus();
+        });
+    </script>
+</head>
+<body>
+    <h1>排隊狀態</h1>
+    <p>用戶名稱：<span id="user">{{ user }}</span></p>
+    <p>在隊列中的位置：<span id="position"></span></p>
+    <p>預計等待時間：<span id="wait_time"></span> 分鐘</p>
+    <p>已經等待時間：<span id="wait_time_after"></span> 分鐘</p>
+    <hr>
+</body>
+</html>
