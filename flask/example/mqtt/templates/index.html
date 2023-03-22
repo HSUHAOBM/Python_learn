@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>MQTT Demo</title>
+  </head>
+  <body>
+    <h1>MQTT Demo</h1>
+    <form id="mqtt-form">
+      <label for="topic">Topic:</label>
+      <input type="text" id="topic" name="topic"><br>
+      <label for="message">Message:</label>
+      <input type="text" id="message" name="message"><br>
+      <button type="submit">Publish</button>
+    </form>
+    <script>
+      document.getElementById('mqtt-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var topic = document.getElementById('topic').value;
+        var message = document.getElementById('message').value;
+        fetch('/publish', {
+          method: 'POST',
+          body: JSON.stringify({topic: topic, message: message}),
+          headers: {'Content-Type': 'application/json'}
+        });
+      });
+    </script>
+  </body>
+</html>
