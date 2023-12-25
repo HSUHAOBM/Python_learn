@@ -62,17 +62,10 @@ try:
     input_element.send_keys(Keys.ENTER)
 
     # 點擊搜尋結果
-    result_xpath = '//*[@id="app"]/main/section/div[1]/div/div[2]/div[2]/div/div/div[2]/ul/li'
-    # result_element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, result_xpath)))
-    # result_element.click()
-
     try:
-        # 等待元素出現，最多等待2秒
-        result_element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located(result_xpath)
-        )
+        result_xpath = '//*[@id="app"]/main/section/div[1]/div/div[2]/div[2]/div/div/div[2]/ul/li'
+        result_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, result_xpath)))
         result_element.click()
-
 
         # 去分頁
         target_element_xpath = '//*[@id="tns1-item2"]'
@@ -100,31 +93,27 @@ try:
 
             no_data_locator = (By.XPATH, '//*[@id="etfPanel3"]/div/section/div/p')
             try:
-                # 等待元素出現，最多等待2秒
-                element = WebDriverWait(driver, 2).until(
-                    EC.presence_of_element_located(no_data_locator)
-                )
+                # 等待元素出現，最多等待 2 秒
+                element = WebDriverWait(driver, 2).until(EC.presence_of_element_located(no_data_locator))
+                print(f'{current_date} 無資料,{element.text}')
 
-                # 如果找到元素，印出相應的文字
-                print("找到元素，文字內容：", element.text)
             except:
-                # 如果找不到元素，印出相應的文字
-                print("找不到元素")
+                print(f'{current_date} 有資料')
 
                 # re.sub(r'\s', '', text)，正則去除所有空白字符
                 # 基金資產淨值
                 asset_value_xpath = '//*[@id="etfPanel3"]/section[2]/div/div[2]/div/div[1]/div'
-                asset_value_element = driver.find_element(By.XPATH, asset_value_xpath)
+                asset_value_element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, asset_value_xpath)))
                 asset_value = re.sub(r'\s', '', asset_value_element.get_attribute('textContent').replace('NTD', ''))
 
                 # 基金在外流通單位數
                 unit_xpath = '//*[@id="etfPanel3"]/section[2]/div/div[2]/div/div[2]/div'
-                unit_element = driver.find_element(By.XPATH, unit_xpath)
+                unit_element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, unit_xpath)))
                 unit_value = re.sub(r'\s', '', unit_element.get_attribute('textContent').replace('NTD', ''))
 
                 # 基金每單位淨值
                 net_value_xpath = '//*[@id="etfPanel3"]/section[2]/div/div[2]/div/div[3]/div'
-                net_value_element = driver.find_element(By.XPATH, net_value_xpath)
+                net_value_element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, net_value_xpath)))
                 net_value = re.sub(r'\s', '', net_value_element.get_attribute('textContent').replace('NTD', ''))
 
                 fund_dict['日期'].append(current_date.strftime("%Y/%m/%d"))
