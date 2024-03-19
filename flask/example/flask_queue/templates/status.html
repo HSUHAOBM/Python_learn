@@ -13,18 +13,22 @@
                 var user = $("#user").text();
                 // 發送AJAX請求獲取排隊狀態
                 $.get("/status/" + user, function(data) {
-                    // 更新排隊狀態
-                    if (data.position != null) {
-                        $("#position").text(data.position);
+                    if (data.in_queue) {
+                        // 更新排隊狀態
+                        if (data.position != null) {
+                            $("#position").text(data.position);
+                        }
+                        if (data.wait_time != null) {
+                            $("#wait_time").text(data.wait_time);
+                        }
+                        if (data.wait_time_after != null) {
+                            $("#wait_time_after").text(data.wait_time_after);
+                        }
+                        // 開始下一輪更新
+                        setTimeout(updateStatus, 3000);
+                    }else{
+                        window.location.href = "/start_page"
                     }
-                    if (data.wait_time != null) {
-                        $("#wait_time").text(data.wait_time);
-                    }
-                    if (data.wait_time_after != null) {
-                        $("#wait_time_after").text(data.wait_time_after);
-                    }
-                    // 開始下一輪更新
-                    setTimeout(updateStatus, 1000);
                 });
             }
             // 開始更新排隊狀態
