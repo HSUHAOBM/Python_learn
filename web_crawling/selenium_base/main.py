@@ -25,8 +25,14 @@ options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(service=service, options=options)
 
 print("Chrome version:", driver.capabilities['browserVersion'])
-print("ChromeDriver version:", driver.capabilities['chrome']['chromedriverVersion'])
+print("ChromeDriver version:",
+      driver.capabilities['chrome']['chromedriverVersion'])
 
 
 # 開始使用
 driver.get('https://www.twse.com.tw/zh/trading/holiday.html')
+
+# input("Press Enter to close the browser...")
+
+# 最後關閉瀏覽器
+driver.quit()
