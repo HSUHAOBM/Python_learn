@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>綁定 2FA</title>
+</head>
+<body>
+    <h2>請使用 Google Authenticator 掃描此 QR code</h2>
+    <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+
+    <!-- 顯示 flash 消息 -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h3>掃描後，請輸入 Google Authenticator 中的驗證碼</h3>
+    <form method="post">
+        <label for="token">驗證碼：</label>
+        <input type="text" id="token" name="token" required><br>
+        <button type="submit">綁定並驗證</button>
+    </form>
+</body>
+</html>

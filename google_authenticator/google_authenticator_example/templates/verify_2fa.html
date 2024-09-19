@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2FA 驗證</title>
+</head>
+<body>
+    <h2>請輸入 2FA 驗證碼</h2>
+
+    <!-- 顯示 flash 消息 -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+        <label for="token">驗證碼：</label>
+        <input type="text" id="token" name="token" required><br>
+        <button type="submit">驗證</button>
+    </form>
+</body>
+</html>
